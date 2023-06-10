@@ -22,12 +22,13 @@ model User {
 }
 
 model Post {
-  id        Int     @id @default(autoincrement())
-  title     String  @db.VarChar()
-  body      String  @db.VarChar()
-  published Boolean @default(false) @db.Boolean
-  author    User    @relation(fields: [authorId], references: [id], map: "posts_author_fk", onDelete: Cascade, onUpdate: NoAction)
-  authorId  Int
+  id         Int      @id @default(autoincrement())
+  title      String   @db.VarChar()
+  body       String   @db.VarChar()
+  published  Boolean  @default(false) @db.Boolean
+  created_at DateTime @default(now()) @db.Timestamptz(4)
+  author     User     @relation(fields: [authorId], references: [id], map: "posts_author_fk", onDelete: Cascade, onUpdate: NoAction)
+  authorId   Int
 
   @@index(fields: [authorId], map: "posts_authorId_index")
   @@map("posts")

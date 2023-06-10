@@ -14,7 +14,7 @@ model User {
   id       Int    @id(map: "users_id_pk") @default(autoincrement()) @db.Integer
   email    String @unique @db.VarChar
   password String @db.VarChar
-  name     String @db.VarChar()
+  name     String @unique @db.VarChar()
   iv       String @db.VarChar()
   posts    Post[]
 

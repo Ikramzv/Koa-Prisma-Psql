@@ -15,6 +15,7 @@ model User {
   email    String @unique @db.VarChar
   password String @db.VarChar
   name     String @db.VarChar()
+  iv       String @db.VarChar()
   posts    Post[]
 
   @@index(fields: [email], map: "users_email_index")

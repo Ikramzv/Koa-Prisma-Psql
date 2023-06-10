@@ -1,9 +1,12 @@
+import dotenv from "dotenv";
 import Koa from "koa";
 import bodyParser from "koa-bodyparser";
 import serve from "koa-static";
 import path from "path";
 import prisma from "./prisma";
 import router from "./routes";
+
+dotenv.config();
 
 const main = async () => {
   const app = new Koa();
@@ -16,8 +19,9 @@ const main = async () => {
   app.use(async (ctx, next) => {
     try {
       await next();
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      // DEBUG LOG
+      console.log("--- ERROR MESSAGE ---", error.message);
     }
   });
 

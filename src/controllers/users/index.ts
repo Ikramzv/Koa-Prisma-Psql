@@ -5,8 +5,12 @@ import { encrypt } from "../../utils";
 
 export const createUser = async (ctx: Context, data: User) => {
   try {
-    const { encrypted } = encrypt(data.password);
-    data.password = encrypted;
+    const { encrypted, iv } = encrypt(data.password);
+    data = {
+      ...data,
+      password: encrypted,
+      iv,
+    };
     const user = await prisma.user.create({
       data,
     });

@@ -1,7 +1,7 @@
 import Router from "@koa/router";
 
 const router = new Router({
-  prefix: "posts",
+  prefix: "/posts",
   methods: ["POST", "GET", "PATCH", "DELETE"],
 });
 
